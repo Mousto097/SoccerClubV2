@@ -5,9 +5,30 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
+import MenuItem from "@material-ui/core/MenuItem";
+import IconButton from "@material-ui/core/IconButton";
+import Menu from "@material-ui/core/Menu";
+import LanguageIcon from "@material-ui/icons/Language";
+import { translate } from "react-i18next";
 
-const Navbar = () => {
+function Navbar(props) {
   const classes = useStyles();
+
+  const { t } = props;
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+
+  const handleMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = (event) => {
+    const value = event.target.getAttribute("value");
+    console.log("I ==> choosed: ", value);
+    props.onSelectLanguage(value);
+    setAnchorEl(null);
+  };
 
   return (
     <div className={classes.root}>
@@ -29,11 +50,42 @@ const Navbar = () => {
           <Button color="inherit" to="/book" component={Link}>
             Reserver un cours
           </Button>
+          <IconButton
+            aria-label="account of current user"
+            aria-controls="menu-appbar"
+            aria-haspopup="true"
+            onClick={handleMenu}
+            color="inherit"
+          >
+            <LanguageIcon />
+          </IconButton>
+          <Menu
+            id="menu-appbar"
+            anchorEl={anchorEl}
+            anchorOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+            keepMounted
+            transformOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+            open={open}
+            onClose={handleClose}
+          >
+            <MenuItem value="en" onClick={handleClose}>
+              Francais
+            </MenuItem>
+            <MenuItem value="fre" onClick={handleClose}>
+              English
+            </MenuItem>
+          </Menu>
         </Toolbar>
       </AppBar>
     </div>
   );
-};
+}
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -47,6 +99,9 @@ const useStyles = makeStyles((theme) => ({
   },
   logo: {
     maxWidth: 50,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
   },
 }));
 
