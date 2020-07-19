@@ -14,6 +14,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import ProgramCheckbox from "./ProgramCheckbox";
 import SportsSoccerIcon from "@material-ui/icons/SportsSoccer";
+import { FormattedMessage, injectIntl } from "react-intl";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -35,7 +36,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignUp() {
+function SignUp(props) {
+  const { intl } = props;
   const classes = useStyles();
 
   return (
@@ -46,7 +48,8 @@ export default function SignUp() {
           <SportsSoccerIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          S'inscrire à un programme
+          {/* S'inscrire à un programme */}
+          <FormattedMessage id="enroll.content.form.title" />
         </Typography>
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
@@ -58,7 +61,9 @@ export default function SignUp() {
                 required
                 fullWidth
                 id="firstName"
-                label="First Name"
+                label={intl.formatMessage({
+                  id: "enroll.content.form.first.name",
+                })}
                 autoFocus
               />
             </Grid>
@@ -68,7 +73,9 @@ export default function SignUp() {
                 required
                 fullWidth
                 id="lastName"
-                label="Last Name"
+                label={intl.formatMessage({
+                  id: "enroll.content.form.last.name",
+                })}
                 name="lastName"
                 autoComplete="lname"
               />
@@ -79,7 +86,9 @@ export default function SignUp() {
                 required
                 fullWidth
                 id="email"
-                label="Email Address"
+                label={intl.formatMessage({
+                  id: "enroll.content.form.email",
+                })}
                 name="email"
                 autoComplete="email"
               />
@@ -90,7 +99,10 @@ export default function SignUp() {
             <Grid item xs={12}>
               <FormControlLabel
                 control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I want to receive inspiration, marketing promotions and updates via email."
+                // label="I want to receive inspiration, marketing promotions and updates via email."
+                label={intl.formatMessage({
+                  id: "enroll.content.form.promotion",
+                })}
               />
             </Grid>
           </Grid>
@@ -101,10 +113,12 @@ export default function SignUp() {
             color="primary"
             className={classes.submit}
           >
-            S'inscrire
+            {/* S'inscrire */}
+            <FormattedMessage id="enroll.content.form.enroll" />
           </Button>
         </form>
       </div>
     </Container>
   );
 }
+export default injectIntl(SignUp);

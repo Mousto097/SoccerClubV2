@@ -10,11 +10,10 @@ import IconButton from "@material-ui/core/IconButton";
 import Menu from "@material-ui/core/Menu";
 import LanguageIcon from "@material-ui/icons/Language";
 import { translate } from "react-i18next";
+import { FormattedMessage, injectIntl } from "react-intl";
 
 function Navbar(props) {
   const classes = useStyles();
-
-  const { t } = props;
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -26,7 +25,7 @@ function Navbar(props) {
   const handleClose = (event) => {
     const value = event.target.getAttribute("value");
     console.log("I ==> choosed: ", value);
-    props.onSelectLanguage(value);
+    props.changeLanguage(value);
     setAnchorEl(null);
   };
 
@@ -36,19 +35,19 @@ function Navbar(props) {
         <Toolbar>
           <img src="logo.png" alt="logo" className={classes.logo} />
           <Typography variant="h5" className={classes.title}>
-            A vos crampons
+            <FormattedMessage id="a.vos.crampons" />
           </Typography>
           <Button color="inherit" to="/" component={Link}>
-            Home
+            <FormattedMessage id="navbar.home" />
           </Button>
           <Button color="inherit" to="/explore" component={Link}>
-            Nos programmes
+            <FormattedMessage id="navbar.our.programs" />
           </Button>
           <Button color="inherit" to="/enroll" component={Link}>
-            S'inscrire à un programme
+            <FormattedMessage id="navbar.enroll.programs" />
           </Button>
           <Button color="inherit" to="/book" component={Link}>
-            Reserver un cours
+            <FormattedMessage id="navbar.book.class" />
           </Button>
           <IconButton
             aria-label="account of current user"
@@ -74,10 +73,10 @@ function Navbar(props) {
             open={open}
             onClose={handleClose}
           >
-            <MenuItem value="en" onClick={handleClose}>
+            <MenuItem value="fr" onClick={handleClose}>
               Francais
             </MenuItem>
-            <MenuItem value="fre" onClick={handleClose}>
+            <MenuItem value="en" onClick={handleClose}>
               English
             </MenuItem>
           </Menu>
@@ -105,4 +104,4 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default Navbar;
+export default injectIntl(Navbar);

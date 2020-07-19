@@ -6,6 +6,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
+import { FormattedMessage, injectIntl } from "react-intl";
 
 const Home = () => {
   const classes = useStyles();
@@ -21,14 +22,16 @@ const Home = () => {
             A vos crampons!
           </Typography>
           <Typography component="h1" variant="h5" gutterBottom>
-            BIENVENUE À L'ECOLE DE SOCCER: A VOS CRAMPONS
+            {/* BIENVENUE À L'ECOLE DE SOCCER: A VOS CRAMPONS */}
+            <FormattedMessage id="home.welcome.title" />
           </Typography>
           <Typography variant="body1" gutterBottom>
-            A VOS CRAMPONS! est l'école officielle de football d'Ottawa au
+            {/* A VOS CRAMPONS! est l'école officielle de football d'Ottawa au
             CANADA offrant une occasion unique à tous les amateurs de football
             âgés de 4 à 16 ans de partager les valeurs d'un club axé sur
             l'excellence et la passion, reconnu internationalement pour son
-            savoir-faire et la qualité de son développement des jeunes joueurs.
+            savoir-faire et la qualité de son développement des jeunes joueurs. */}
+            <FormattedMessage id="home.welcome.body" />
           </Typography>
           <Button
             color="primary"
@@ -37,7 +40,8 @@ const Home = () => {
             variant="contained"
             className={classes.submit}
           >
-            Voir nos programmes
+            {/* Voir nos programmes */}
+            <FormattedMessage id="home.see.our.programs" />
           </Button>
         </div>
       </Grid>

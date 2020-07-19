@@ -1,12 +1,11 @@
 import React from "react";
 import FeaturedPost from "./FeaturedPost";
 import BookingForm from "./BookingForm";
+import { FormattedMessage, injectIntl } from "react-intl";
 
 const mainFeaturedPost = {
-  title: "Reserver un cours dès aujourd'hui",
+  title: <FormattedMessage id="book.banner.title" />,
   image: "../img/banner.jpg",
-  imgText: "main image description",
-  linkText: "Continue reading…",
 };
 
 const BookCourse = () => {

@@ -1,9 +1,10 @@
 import React from "react";
 import FeaturedPost from "./FeaturedPost";
 import SignUpForm from "./SignUp";
+import { FormattedMessage, injectIntl } from "react-intl";
 
 const mainFeaturedPost = {
-  title: "Inscrivez-vous au Soccer À VOS CRAMPONS OTTAWA",
+  title: <FormattedMessage id="enroll.banner.title" />,
   image: "../img/banner.jpg",
   imgText: "main image description",
 };

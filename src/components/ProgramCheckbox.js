@@ -8,6 +8,7 @@ import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
 import CheckBoxIcon from "@material-ui/icons/CheckBox";
 import Favorite from "@material-ui/icons/Favorite";
 import FavoriteBorder from "@material-ui/icons/FavoriteBorder";
+import { injectIntl } from "react-intl";
 
 const GreenCheckbox = withStyles({
   root: {
@@ -19,7 +20,9 @@ const GreenCheckbox = withStyles({
   checked: {},
 })((props) => <Checkbox color="default" {...props} />);
 
-export default function CheckboxLabels() {
+function CheckboxLabels(props) {
+  const { intl } = props;
+
   const [state, setState] = React.useState({
     checkedA: true,
     checkedB: false,
@@ -45,7 +48,10 @@ export default function CheckboxLabels() {
             color="primary"
           />
         }
-        label="Cours compétitifs"
+        // label="Cours compétitifs"
+        label={intl.formatMessage({
+          id: "enroll.content.form.cours.competitif",
+        })}
       />
       <FormControlLabel
         control={
@@ -56,7 +62,10 @@ export default function CheckboxLabels() {
             color="primary"
           />
         }
-        label="Cours gardien au but"
+        // label="Cours gardien au but"
+        label={intl.formatMessage({
+          id: "enroll.content.form.cours.gardien",
+        })}
       />
       <FormControlLabel
         control={
@@ -67,7 +76,10 @@ export default function CheckboxLabels() {
             color="primary"
           />
         }
-        label="Cours techniques"
+        // label="Cours techniques"
+        label={intl.formatMessage({
+          id: "enroll.content.form.cours.techniques",
+        })}
       />
       <FormControlLabel
         control={
@@ -78,7 +90,10 @@ export default function CheckboxLabels() {
             color="primary"
           />
         }
-        label="Cours endurance"
+        // label="Cours endurance"
+        label={intl.formatMessage({
+          id: "enroll.content.form.cours.endurance",
+        })}
       />
       <FormControlLabel
         control={
@@ -89,7 +104,10 @@ export default function CheckboxLabels() {
             color="primary"
           />
         }
-        label="Cours expérience"
+        // label="Cours expérience"
+        label={intl.formatMessage({
+          id: "enroll.content.form.cours.experience",
+        })}
       />
       <FormControlLabel
         control={
@@ -100,8 +118,10 @@ export default function CheckboxLabels() {
             color="primary"
           />
         }
-        label="Cours joueurs"
+        label={intl.formatMessage({ id: "enroll.content.form.cours.joueurs" })}
       />
     </FormGroup>
   );
 }
+
+export default injectIntl(CheckboxLabels);

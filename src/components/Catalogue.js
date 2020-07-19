@@ -20,6 +20,7 @@ import coursCompetitifsImage from "../img/cours-competitifs.jpg";
 import coursExperienceImage from "../img/cours-experience.jpg";
 import coursEnduranceImage from "../img/cours-endurance.jpg";
 import { Link } from "react-router-dom";
+import { FormattedMessage, injectIntl } from "react-intl";
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -57,44 +58,38 @@ const cards = [1, 2, 3, 4, 5, 6];
 const cardsData = [
   {
     id: 1,
-    title: "Cours competitifs",
-    description:
-      "Les camps compétitifs sont une semaine intensive de soccer et l’opportunité unique de s’entraîner avec des joueurs de bon niveau dans un environnement professionnel. Les joueurs auront la possibilité de repartir avec des compétences considérables, dans la maitrise des gestes techniques et des prises de décision",
+    title: <FormattedMessage id="programs.card.competitif.title" />,
+    description: <FormattedMessage id="programs.card.competitif.description" />,
     image: coursCompetitifsImage,
   },
   {
     id: 2,
-    title: "Cours techniques",
-    description:
-      "Au cours de ce programme, les participants apprendront l’éventail complet de gestes techniques que tout bon joueur doit maîtriser ainsi que les habitudes de travail essentielles pour assurer une progression constante.",
+    title: <FormattedMessage id="programs.card.techniques.title" />,
+    description: <FormattedMessage id="programs.card.techniques.description" />,
     image: coursTechniquesImage,
   },
   {
     id: 3,
-    title: "Cours experience",
-    description:
-      "Parfait pour les clubs ou les entreprises à la recherche d'une activité de team-building. 12 participants minimum, pour des groupes d'enfants et/ou adultes.",
+    title: <FormattedMessage id="programs.card.experience.title" />,
+    description: <FormattedMessage id="programs.card.experience.description" />,
     image: coursExperienceImage,
   },
   {
     id: 4,
-    title: "Cours gardien au but",
-    description:
-      "Le programme Gardiens de but permet aux gardiens déjà familiers avec les techniques de bases d’intégrer de nouveaux aspects (techniques de déplacement, appuis, maitrise gestuelle, lecture du jeu) afin de passer un cap. L’objectif est d’enrichir le bagage technique du gardien et d’optimiser sa connaissance du poste pour être plus performant dans son club.",
+    title: <FormattedMessage id="programs.card.gardien.title" />,
+    description: <FormattedMessage id="programs.card.gardien.description" />,
     image: goalKeeperImage,
   },
   {
     id: 5,
-    title: "Cours endurance",
-    description:
-      "Afin de mieux s’exprimer sur le terrain, un joueur doit développer son endurance, sa psychomotricité et découvrir le jeu collectif. Pour atteindre ces objectifs, les Écoles de soccer miseront sur le développement des six points psychomoteurs suivants : Équilibre - Coordination - Endurance - Synchronisation - Tonicité - Espace-temps.",
+    title: <FormattedMessage id="programs.card.endurance.title" />,
+    description: <FormattedMessage id="programs.card.endurance.description" />,
     image: coursEnduranceImage,
   },
   {
     id: 6,
-    title: "Cours joueurs",
-    description:
-      "Le but de ce programme est d’optimiser la palette des gestes techniques appris au fil des années afin d’arriver à une excellence de niveau de jeu. Un travail est également réalisé sur l’intelligence du joueur afin de l’apprendre à faire les bons choix sur le terrain et sur la mentalité à adopter afin d’exceller avec son club.",
+    title: <FormattedMessage id="programs.card.jouers.title" />,
+    description: <FormattedMessage id="programs.card.jouers.description" />,
     image: coursJoueurImage,
   },
 ];
@@ -116,7 +111,8 @@ export default function Album() {
               color="textPrimary"
               gutterBottom
             >
-              Écoles de soccer - programmes offers
+              {/* Écoles de soccer - programmes offers */}
+              <FormattedMessage id="programs.content.title" />
             </Typography>
             <div className={classes.heroButtons}>
               <Grid container spacing={2} justify="center">
@@ -127,7 +123,8 @@ export default function Album() {
                     to="/enroll"
                     component={Link}
                   >
-                    S'inscrire à un programme
+                    {/* S'inscrire à un programme */}
+                    <FormattedMessage id="programs.content.enroll.button" />
                   </Button>
                 </Grid>
                 <Grid item>
@@ -137,7 +134,8 @@ export default function Album() {
                     to="/book"
                     component={Link}
                   >
-                    Reserver un cours
+                    {/* Reserver un cours */}
+                    <FormattedMessage id="programs.content.book.button" />
                   </Button>
                 </Grid>
               </Grid>

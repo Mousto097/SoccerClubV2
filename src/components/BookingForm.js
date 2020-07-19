@@ -16,6 +16,7 @@ import ProgramCheckbox from "./ProgramCheckbox";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import clsx from "clsx";
 import ScheduleIcon from "@material-ui/icons/Schedule";
+import { FormattedMessage, injectIntl } from "react-intl";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -37,7 +38,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function BookingForm() {
+function BookingForm(props) {
+  const { intl } = props;
   const classes = useStyles();
 
   return (
@@ -48,7 +50,7 @@ export default function BookingForm() {
           <ScheduleIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Reserver un cours
+          <FormattedMessage id="book.content.form.title" />
         </Typography>
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
@@ -60,7 +62,9 @@ export default function BookingForm() {
                 required
                 fullWidth
                 id="firstName"
-                label="First Name"
+                label={intl.formatMessage({
+                  id: "enroll.content.form.first.name",
+                })}
                 autoFocus
               />
             </Grid>
@@ -70,7 +74,9 @@ export default function BookingForm() {
                 required
                 fullWidth
                 id="lastName"
-                label="Last Name"
+                label={intl.formatMessage({
+                  id: "enroll.content.form.last.name",
+                })}
                 name="lastName"
                 autoComplete="lname"
               />
@@ -81,7 +87,9 @@ export default function BookingForm() {
                 required
                 fullWidth
                 id="email"
-                label="Email Address"
+                label={intl.formatMessage({
+                  id: "enroll.content.form.email",
+                })}
                 name="email"
                 autoComplete="email"
               />
@@ -92,7 +100,9 @@ export default function BookingForm() {
             <Grid item xs={12}>
               <TextField
                 id="datetime-local"
-                label="Next appointment"
+                label={intl.formatMessage({
+                  id: "enroll.content.form.next.appointement",
+                })}
                 type="datetime-local"
                 defaultValue="2017-05-24T10:30"
                 className={classes.textField}
@@ -103,7 +113,9 @@ export default function BookingForm() {
             </Grid>
             <Grid item xs={12}>
               <TextField
-                label="Durée"
+                label={intl.formatMessage({
+                  id: "enroll.content.form.duration",
+                })}
                 id="standard-start-adornment"
                 className={clsx(classes.margin, classes.textField)}
                 InputProps={{
@@ -121,10 +133,13 @@ export default function BookingForm() {
             color="primary"
             className={classes.submit}
           >
-            Reserver
+            {/* Reserver */}
+            <FormattedMessage id="book.content.form.enroll" />
           </Button>
         </form>
       </div>
     </Container>
   );
 }
+
+export default injectIntl(BookingForm);
