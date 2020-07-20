@@ -45,6 +45,8 @@
   "enroll.content.form.duration": "Duration",
   "enroll.content.form.promotion": "I want to receive inspiration, marketing promotions and updates via email.",
   "enroll.content.form.enroll": "Register",
+  "enroll.content.form.enroll.tooltip": "Register to a program",
+  "enroll.content.form.snacbar.complete": "Course registration completed succesfully!",
 
   "book.banner.title": "Book a course today",
   "book.content.form.title": "Book a class",
@@ -58,5 +60,10 @@
   "book.content.form.cours.endurance": "Endurance course",
   "book.content.form.cours.joueurs": "Player Courses",
   "book.content.form.date": "Duration",
-  "book.content.form.enroll": "Book"
+  "book.content.form.enroll": "Book",
+  "book.content.form.enroll.tooltip": "Book a course",
+  "book.content.form.snacbar.complete": "Course booking completed succesfully!",
+
+  "form.error.alphabet.field": "Incorrect entry.This field only accepts alphabet letter!",
+  "form.error.numbers.field": "Incorrect entry.This field only accepts numbers!"
 }

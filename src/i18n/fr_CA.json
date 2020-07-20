@@ -45,6 +45,8 @@
   "enroll.content.form.duration": "Durée",
   "enroll.content.form.promotion": "Je veux recevoir de l'inspiration, des promotions marketing et des mises à jour par e-mail.",
   "enroll.content.form.enroll": "S'inscrire",
+  "enroll.content.form.enroll.tooltip": "S'inscrire à un programme",
+  "enroll.content.form.snacbar.complete": "Inscription completer avec success !",
 
   "book.banner.title": "Reserver un cours dès aujourd'hui",
   "book.content.form.title": "Reserver un cours",
@@ -58,5 +60,10 @@
   "book.content.form.cours.endurance": "Cours endurance",
   "book.content.form.cours.joueurs": "Prochain rendez-vous",
   "book.content.form.date": "Durée",
-  "book.content.form.enroll": "Reserver"
+  "book.content.form.enroll": "Reserver",
+  "book.content.form.enroll.tooltip": "Reserver un cours",
+  "book.content.form.snacbar.complete": "Reservation completer avec success !",
+
+  "form.error.alphabet.field": "Entrée incorrecte : ce champ n'accepte que les lettres de l'alphabet !",
+  "form.error.numbers.field": "Entrée incorrecte : ce champ n'accepte que les nombres !"
 }

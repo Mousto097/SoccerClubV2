@@ -17,6 +17,10 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import clsx from "clsx";
 import ScheduleIcon from "@material-ui/icons/Schedule";
 import { FormattedMessage, injectIntl } from "react-intl";
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert from "@material-ui/lab/Alert";
+import Tooltip from "@material-ui/core/Tooltip";
+import Zoom from "@material-ui/core/Zoom";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -38,9 +42,67 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
+
 function BookingForm(props) {
   const { intl } = props;
   const classes = useStyles();
+
+  const [open, setOpen] = React.useState(false);
+
+  const [errorFirstName, setErrorFirstName] = React.useState("");
+  const [errorLastName, setErrorLastName] = React.useState("");
+  const [errorEmail, setErrorEmail] = React.useState("");
+  const [errorDuration, setErrorDuration] = React.useState("");
+
+  const letterOnlyRegex = "[a-zA-Z]+";
+  const numberOnlyRegex = "[0-9]+";
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+  const onChange = (event) => {
+    if (event.target.value.match(letterOnlyRegex)) {
+      if (event.target.id == "firstName") {
+        setErrorFirstName("");
+      }
+      if (event.target.id == "lastName") {
+        setErrorLastName("");
+      }
+      if (event.target.id == "email") {
+        setErrorEmail("");
+      }
+    } else {
+      if (event.target.id == "firstName") {
+        setErrorFirstName(<FormattedMessage id="form.error.alphabet.field" />);
+      }
+      if (event.target.id == "lastName") {
+        setErrorLastName(<FormattedMessage id="form.error.alphabet.field" />);
+      }
+      if (event.target.id == "email") {
+        setErrorEmail(<FormattedMessage id="form.error.alphabet.field" />);
+      }
+    }
+  };
+
+  const onChangeNumber = (event) => {
+    if (event.target.value.match(numberOnlyRegex)) {
+      setErrorDuration("");
+    } else {
+      setErrorDuration(<FormattedMessage id="form.error.numbers.field" />);
+    }
+  };
 
   return (
     <Container component="main" maxWidth="xs">
@@ -56,6 +118,9 @@ function BookingForm(props) {
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
+                error={errorFirstName.length === 0 ? false : true}
+                helperText={errorFirstName}
+                onChange={onChange.bind(this)}
                 autoComplete="fname"
                 name="firstName"
                 variant="outlined"
@@ -70,6 +135,9 @@ function BookingForm(props) {
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
+                error={errorLastName.length === 0 ? false : true}
+                helperText={errorLastName}
+                onChange={onChange.bind(this)}
                 variant="outlined"
                 required
                 fullWidth
@@ -83,6 +151,9 @@ function BookingForm(props) {
             </Grid>
             <Grid item xs={12}>
               <TextField
+                error={errorEmail.length === 0 ? false : true}
+                helperText={errorEmail}
+                onChange={onChange.bind(this)}
                 variant="outlined"
                 required
                 fullWidth
@@ -116,26 +187,43 @@ function BookingForm(props) {
                 label={intl.formatMessage({
                   id: "enroll.content.form.duration",
                 })}
-                id="standard-start-adornment"
+                id="duration"
                 className={clsx(classes.margin, classes.textField)}
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">Min</InputAdornment>
                   ),
                 }}
+                error={errorDuration.length === 0 ? false : true}
+                helperText={errorDuration}
+                onChange={onChangeNumber.bind(this)}
               />
             </Grid>
           </Grid>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
+          <Tooltip
+            TransitionComponent={Zoom}
+            title={intl.formatMessage({
+              id: "book.content.form.enroll.tooltip",
+            })}
           >
-            {/* Reserver */}
-            <FormattedMessage id="book.content.form.enroll" />
-          </Button>
+            <Button
+              // type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+              onClick={handleClick}
+            >
+              {/* Reserver */}
+              <FormattedMessage id="book.content.form.enroll" />
+            </Button>
+          </Tooltip>
+          <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+            <Alert onClose={handleClose} severity="success">
+              {/* This is a success message! */}
+              <FormattedMessage id="book.content.form.snacbar.complete" />
+            </Alert>
+          </Snackbar>
         </form>
       </div>
     </Container>
